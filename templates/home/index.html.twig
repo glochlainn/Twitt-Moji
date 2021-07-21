@@ -22,8 +22,12 @@
                             {{ tweet.user.username }}
                         </h2>
                         <h3 class="mt-0 mb-3">
-                            <i class="far fa-clock"></i>
-                            {{ tweet.tweetedAt|ago }}
+                            <i class="far fa-clock me-1"></i>
+                            {% if date(tweet.tweetedAt) > date('-1days', 'Europe/Paris') %}
+                                {{ tweet.tweetedAt|ago }}
+                            {% else %}
+                                {{ tweet.tweetedAt|date('d/m/Y') }}
+                            {% endif %}
                         </h3>
                         <p class="mb-0">{{ tweet.content }}</p>
                     </div>

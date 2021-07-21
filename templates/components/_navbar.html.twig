@@ -14,7 +14,11 @@
                 {% else %}
                     <li class="nav-item mt-2 mt-lg-0">
                         <a class="nav-link active" aria-current="page" href="#">
-                            <i class="far fa-user"></i>
+                            {% if is_granted("ROLE_MODERATOR") or is_granted("ROLE_ADMIN") %}
+                                <i class="fas fa-cog"></i>
+                            {% else %}
+                                <i class="far fa-user"></i>
+                            {% endif %}
                             {{ app.user.username }}
                         </a>
                     </li>

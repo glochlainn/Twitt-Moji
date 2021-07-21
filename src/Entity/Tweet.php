@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TweetRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,9 +40,11 @@ class Tweet
         return $this->id;
     }
 
-    public function getTweetedAt(): ?\DateTimeImmutable
+    public function getTweetedAt(): ?DateTime
     {
-        return $this->tweeted_at;
+        $newDateTime = DateTime::createFromImmutable($this->tweeted_at);
+
+        return $newDateTime;
     }
 
     public function setTweetedAt(\DateTimeImmutable $tweeted_at): self

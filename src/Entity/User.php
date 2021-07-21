@@ -52,9 +52,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $tweets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Follow::class, mappedBy="follower")
+     */
+    private $follows;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Follow::class, mappedBy="followed")
+     */
+    private $followedBy;
+
     public function __construct()
     {
         $this->tweets = new ArrayCollection();
+        $this->follows = new ArrayCollection();
+        $this->followedBy = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +201,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($tweet->getUser() === $this) {
                 $tweet->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function addFollow(Follow $follow): self
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows[] = $follow;
+            $follow->setFollower($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollow(Follow $follow): self
+    {
+        if ($this->follows->removeElement($follow)) {
+            // set the owning side to null (unless already changed)
+            if ($follow->getFollower() === $this) {
+                $follow->setFollower(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowedBy(): Collection
+    {
+        return $this->followedBy;
+    }
+
+    public function addFollowedBy(Follow $followedBy): self
+    {
+        if (!$this->followedBy->contains($followedBy)) {
+            $this->followedBy[] = $followedBy;
+            $followedBy->setFollowed($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowedBy(Follow $followedBy): self
+    {
+        if ($this->followedBy->removeElement($followedBy)) {
+            // set the owning side to null (unless already changed)
+            if ($followedBy->getFollowed() === $this) {
+                $followedBy->setFollowed(null);
             }
         }
 
