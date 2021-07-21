@@ -103,6 +103,9 @@
     "eschmar/time-ago-bundle": {
         "version": "v2.0.0"
     },
+    "fakerphp/faker": {
+        "version": "v1.15.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
