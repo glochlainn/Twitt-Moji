@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}- Nouveau Twitt'Moji
+{% endblock %}
+
+{% block body %}
+    <main class="py-5">
+        <div class="container">
+            <h1 class="h1 text-secondary fw-bold mt-5">Nouveau Twitt'Moji</h1>
+            {{ include('tweet/_form.html.twig') }}
+        </div>
+    </main>
+{% endblock %}
