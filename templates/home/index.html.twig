@@ -13,20 +13,27 @@
 {% block body %}
     <main class="container py-5">
         <div class="px-md-5 px-0">
-            <h1 class="h1 text-primary fw-bold mt-5">Accueil</h1>
+            <h1 class="h1 text-primary fw-bold mt-5 mb-4">Derniers Twitt'Mojis</h1>
             {% for tweet in tweets %}
-                <div class="tweet-card d-flex flex-row align-items-center mb-3 py-5">
-                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username }}">
+                <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
                     <div class="d-flex flex-column">
-                        <h2 class="h5 me-2 mt-0 mb-2">{{ tweet.user.username }}</h2>
+                        <h2 class="h5 me-2 mt-0 mb-2">
+                            {{ tweet.user.username }}
+                        </h2>
                         <h3 class="mt-0 mb-3">
                             <i class="far fa-clock"></i>
-                            {{ tweet.tweetedAt|date("d/m/Y") }}
+                            {{ tweet.tweetedAt|ago }}
                         </h3>
                         <p class="mb-0">{{ tweet.content }}</p>
                     </div>
                 </div>
             {% endfor %}
+            {% if app.user %}
+                <a class="btn btn-lg btn-secondary text-light new-tweet" href="{{ path('tweet_new') }}">
+                    <i class="fas fa-plus"></i>
+                </a>
+            {% endif %}
         </div>
     </main>
 {% endblock %}
