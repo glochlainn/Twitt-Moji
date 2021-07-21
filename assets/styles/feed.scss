@@ -1,0 +1,22 @@
+@import 'variables';
+
+main {
+  .tweet-card {
+    border-bottom: 1px solid #e5e5e54d;
+
+    img {
+      height: 45px;
+      width: 45px;
+      border-radius: 100%;
+      object-fit: cover;
+    }
+
+    h3 {
+      font-size: 13px;
+    }
+
+    p {
+      font-size: 35px;
+    }
+  }
+}
