@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('home') }}">Twitt'<span class="text-primary">Moji</span>
+        <a class="navbar-brand" href="{{ path('home') }}">Twitt'<span class="text-primary">Moji</span>🤪
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-light"></i>
@@ -15,7 +15,8 @@
                     <li class="nav-item mt-2 mt-lg-0">
                         <a class="nav-link active" aria-current="page" href="#">
                             <i class="far fa-user"></i>
-                            {{ app.user.username }}</a>
+                            {{ app.user.username }}
+                        </a>
                     </li>
                     <li class="nav-item mt-2 mt-lg-0">
                         <a class="nav-link text-danger" aria-current="page" href="{{ path('app_logout') }}">Deconnexion</a>
