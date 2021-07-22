@@ -82,24 +82,28 @@
                         </a>
                     </div>
                     <div class="modal-body">
-                        {% for follow in user.follows %}
-                            <div class="user-card my-2 d-flex flex-row align-items-center">
-                                <img class="me-3" src="{{ follow.followed.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.followed.username }}">
-                                <div>
-                                    <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <p class="mb-0 me-2">
-                                            <span class="fw-bold">{{ follow.followed.follows|length }}</span>
-                                            abonnements
-                                        </p>
-                                        <p class="m-0">
-                                            <span class="fw-bold">{{ follow.followed.followedBy|length }}</span>
-                                            abonnés
-                                        </p>
+                        {% if user.follows is empty %}
+                            <h4 class="h6">Vous ne suivez personne pour le moment 🤪</h4>
+                        {% else %}
+                            {% for follow in user.follows %}
+                                <div class="user-card my-2 d-flex flex-row align-items-center">
+                                    <img class="me-3" src="{{ follow.followed.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.followed.username }}">
+                                    <div>
+                                        <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <p class="mb-0 me-2">
+                                                <span class="fw-bold">{{ follow.followed.follows|length }}</span>
+                                                abonnements
+                                            </p>
+                                            <p class="m-0">
+                                                <span class="fw-bold">{{ follow.followed.followedBy|length }}</span>
+                                                abonnés
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -116,24 +120,28 @@
                         </a>
                     </div>
                     <div class="modal-body">
-                        {% for follow in user.followedBy %}
-                            <div class="user-card my-2 d-flex flex-row align-items-center">
-                                <img class="me-3" src="{{ follow.follower.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.follower.username }}">
-                                <div>
-                                    <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <p class="mb-0 me-2">
-                                            <span class="fw-bold">{{ follow.follower.follows|length }}</span>
-                                            abonnements
-                                        </p>
-                                        <p class="m-0">
-                                            <span class="fw-bold">{{ follow.follower.followedBy|length }}</span>
-                                            abonnés
-                                        </p>
+                        {% if user.followedBy is empty %}
+                            <h4 class="h6">Personne ne vous suit pour le moment 😪</h4>
+                        {% else %}
+                            {% for follow in user.followedBy %}
+                                <div class="user-card my-2 d-flex flex-row align-items-center">
+                                    <img class="me-3" src="{{ follow.follower.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.follower.username }}">
+                                    <div>
+                                        <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <p class="mb-0 me-2">
+                                                <span class="fw-bold">{{ follow.follower.follows|length }}</span>
+                                                abonnements
+                                            </p>
+                                            <p class="m-0">
+                                                <span class="fw-bold">{{ follow.follower.followedBy|length }}</span>
+                                                abonnés
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
