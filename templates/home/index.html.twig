@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}- Accueil
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('feed') }}
+{% endblock %}
+
+{% block body %}
+    <main class="container py-5">
+        <div class="px-md-5 px-0">
+            <h1 class="h1 text-primary fw-bold mt-5 mb-4">Derniers Twitt'Mojis</h1>
+            {% for tweet in tweets %}
+                <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar ? vich_uploader_asset(tweet.user, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="avatar-picture-{{ tweet.user.username ?? " user-picture"}}">
+                    <div class="d-flex flex-column">
+                        <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
+                            <a href="{{ path("profile", {username: tweet.user.username}) }}">
+                                {{ tweet.user.username }}
+                            </a>
+                        </h2>
+                        <h3 class="mt-0 mb-3">
+                            <i class="far fa-clock me-1"></i>
+                            {% if date(tweet.tweetedAt) > date('-1days', 'Europe/Paris') %}
+                                {{ tweet.tweetedAt|ago }}
+                            {% else %}
+                                {{ tweet.tweetedAt|date('d/m/Y') }}
+                            {% endif %}
+                        </h3>
+                        <p class="mb-0">{{ tweet.content }}</p>
+
+                        {% if app.user == tweet.user or is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERATOR") %}
+                            <form class="mt-3" method="post" action="{{ path('tweet_delete', {'id': tweet.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce tweet ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tweet.id) }}">
+                                <button class="delete-tweet">
+                                    <i class="far fa-trash-alt"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            {% if app.user %}
+                <a class="btn btn-lg bg-primary text-dark new-tweet" href="{{ path('tweet_new') }}">
+                    <i class="fas fa-plus"></i>
+                </a>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

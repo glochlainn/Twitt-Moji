@@ -1,0 +1,44 @@
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: $dark;
+  color: $light;
+  font-family: $quicksand;
+}
+
+.btn-primary {
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.btn-secondary {
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
+  color: $light;
+}
+
+.btn-outline-danger {
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
+
+  &:hover {
+      background-color: $dark;
+      color: $danger;
+      border-color: $danger;
+      filter: brightness(130%);
+  }
+}
+
+.btn-outline-primary {
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.navbar-toggler {
+  border: none;
+}
