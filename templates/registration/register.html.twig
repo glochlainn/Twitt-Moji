@@ -7,7 +7,7 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    {{ encore_entry_link_tags('register') }}
+    {{ encore_entry_link_tags('form') }}
 {% endblock %}
 
 
@@ -24,7 +24,7 @@
             <div class="form">
                 <h1 class="h1 fw-bold text-primary mt-5">S'inscrire à Twitt'Moji</h1>
                 {{ form_start(registrationForm) }}
-                <div>
+                    <div>
                     {{ form_label(registrationForm.username, null, {label: 'Nom d\'utilisateur'}) }}
                         {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
                     </div>
