@@ -40,15 +40,15 @@ If you meet the prerequisites, you can proceed to the installation of the projec
 12. Go to localhost:8000 on your browser
 
 ## Users
-**User**
+**User**<br/>
 login: _user_<br/>
 password: _12345_<br/>
 
-**Moderator**
+**Moderator**<br/>
 login: _Modo_<br/>
 password: _modo_<br/>
 
-**Admin**
+**Admin**<br/>
 login: _Admin_<br/>
 password: _admin_<br/>
 
