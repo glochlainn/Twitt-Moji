@@ -1,0 +1,75 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}-
+    {{ user.username }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="py-5">
+            <div class="profile-header mb-md-5 mb-4 mt-5 d-flex flex-md-row flex-column align-items-md-center justify-content-between">
+                <div class="d-flex flex-md-row flex-column align-items-md-center">
+                    <img class="me-4 mb-3 mb-md-0" src="{{ user.avatar }}" alt="profile-pic-{{ user.username }}">
+                    <div>
+                        <h1 class="h3 fw-bold">{{ user.username }}</h1>
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="h5 me-3">
+                                <span class="fw-bold">{{ user.follows|length }}</span>
+                                abonnements
+                            </p>
+                            <p class="h5">
+                                <span class="fw-bold">{{ user.followedBy|length }}</span>
+                                abonnés
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 mt-md-0">
+                    {% if app.user == user %}
+                        <a class="btn btn-primary fw-bold" href="#">
+                            Éditer le profil
+                            <i class="fas fa-pen ms-1"></i>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-primary fw-bold" href="#">
+                            S'abonner
+                            <i class="fas fa-angle-right ms-1"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <h2 class="h2 text-primary mb-3 fw-bold">Twitt'Mojis de
+                {{ user.username }}
+            </h2>
+            {% for tweet in user.tweets %}
+                <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
+                    <div class="d-flex flex-column">
+                        <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
+                            <a href="{{ path("profile", {username: tweet.user.username}) }}">
+                                {{ tweet.user.username }}
+                            </a>
+                        </h2>
+                        <h3 class="mt-0 mb-3">
+                            <i class="far fa-clock me-1"></i>
+                            {% if date(tweet.tweetedAt) > date('-1days', 'Europe/Paris') %}
+                                {{ tweet.tweetedAt|ago }}
+                            {% else %}
+                                {{ tweet.tweetedAt|date('d/m/Y') }}
+                            {% endif %}
+                        </h3>
+                        <p class="mb-0">{{ tweet.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </main>
+{% endblock %}

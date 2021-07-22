@@ -18,8 +18,10 @@
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
                     <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
                     <div class="d-flex flex-column">
-                        <h2 class="h5 me-2 mt-0 mb-2">
-                            {{ tweet.user.username }}
+                        <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
+                            <a href="{{ path("profile", {username: tweet.user.username}) }}">
+                                {{ tweet.user.username }}
+                            </a>
                         </h2>
                         <h3 class="mt-0 mb-3">
                             <i class="far fa-clock me-1"></i>
