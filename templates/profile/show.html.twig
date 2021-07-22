@@ -19,7 +19,7 @@
                     <img class="me-4 mb-3 mb-md-0" src="{{ user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ user.username }}">
                     <div>
                         <h1 class="h3 fw-bold">{{ user.username }}</h1>
-                        <div class="d-flex flex-row align-items-center">
+                        <div class="follows d-flex flex-row align-items-center">
                             <a a type="button" data-bs-toggle="modal" data-bs-target="#abonnements" class="h5 me-3">
                                 <span class="fw-bold">{{ user.follows|length }}</span>
                                 abonnements
