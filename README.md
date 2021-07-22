@@ -40,14 +40,18 @@ If you meet the prerequisites, you can proceed to the installation of the projec
 12. Go to localhost:8000 on your browser
 
 ## Users
-### User
+**User**
 login: user
 password: 12345
 
-### Moderator
+**Moderator**
 login: Modo
 password: modo
 
-### Admin
+**Admin**
 login: Admin
 password: admin
+
+## Built-With
+
+* [Symfony](https://github.com/symfony/symfony)
