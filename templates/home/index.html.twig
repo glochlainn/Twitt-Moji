@@ -16,7 +16,7 @@
             <h1 class="h1 text-primary fw-bold mt-5 mb-4">Derniers Twitt'Mojis</h1>
             {% for tweet in tweets %}
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
-                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="avatar-picture-{{ tweet.user.username ?? "user-picture"}}">
                     <div class="d-flex flex-column">
                         <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
                             <a href="{{ path("profile", {username: tweet.user.username}) }}">
