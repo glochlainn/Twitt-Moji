@@ -11,6 +11,9 @@
                     <li class="nav-item mt-2 mt-lg-0">
                         <a class="nav-link active py-2 text-primary" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
                     </li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="nav-link active py-2 text-primary" aria-current="page" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
                 {% else %}
                     <li class="nav-item mt-2 mt-lg-0">
                         <a class="nav-link active" aria-current="page" href="{{ path("profile", {username: app.user.username}) }}">

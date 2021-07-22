@@ -4,7 +4,7 @@ main {
     color: $light;
     height: 80vh;
 
-    .form {
+    form {
         width: 600px;
 
         .form-control {
@@ -16,8 +16,14 @@ main {
             }
         }
 
+        img {
+            width: 50px;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
         @media screen and (max-width: 740px) {
-            width: 90%;
+            width: 100%;
         }
     }
 

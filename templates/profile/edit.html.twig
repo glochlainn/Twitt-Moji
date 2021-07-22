@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}- Modifier mon profil
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('form') }}
+{% endblock %}
+
+{% block body %}
+    <main class="container py-5 d-flex flex-column justify-content-center align-items-center">
+        <div class="form">
+            <h1 class="h1 fw-bold text-primary mt-5">Modifier mon profil</h1>
+            {{ form_start(form) }}
+            <div>
+                {{ form_label(form.username, null, {label: 'Nom d\'utilisateur'}) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.email, null, {label: 'Nom d\'utilisateur'}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.imageFile, null, {label: 'Image de profil'}) }}
+                {{ form_widget(form.imageFile, {'attr': {'class': 'form-control mt-1 mb-2', 'type': 'file'}}) }}
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary">Enregistrer
+                    <i class="fas fa-check me-1"></i>
+                </button>
+                <a class="btn btn-outline-primary ms-1" href="{{ path('profile', {username: app.user.username}) }}">Retour au profil</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </main>
+{% endblock %}
