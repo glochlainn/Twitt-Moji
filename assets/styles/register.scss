@@ -1,0 +1,27 @@
+@import 'variables';
+
+main {
+    color: $light;
+    height: 80vh;
+
+    .form {
+        width: 600px;
+
+        .form-control {
+            background-color: $light;
+            padding: 8px 20px;
+
+            &:focus {
+                background-color: $light;
+            }
+        }
+
+        @media screen and (max-width: 740px) {
+            width: 90%;
+        }
+    }
+
+    @media screen and (max-width: 740px) {
+        height: 60vh;
+    }
+}

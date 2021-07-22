@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}- S'inscrire
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('register') }}
+{% endblock %}
+
+
+{% block body %}
+    <main class="container py-5 d-flex flex-column justify-content-center align-items-center">
+        {% if app.user %}
+            <h1 class="h1 text-center text-primary mt-5">Vous êtes déjà inscrit à Twitt'Moji</h1>
+            <h2 class="h4 text-center">
+                <a class="text-light" href="{{ path("home") }}">
+                    Retourner à la page principale
+                </a>
+            </h2>
+        {% else %}
+            <div class="form">
+                <h1 class="h1 fw-bold text-primary mt-5">S'inscrire à Twitt'Moji</h1>
+                {{ form_start(registrationForm) }}
+                <div>
+                    {{ form_label(registrationForm.username, null, {label: 'Nom d\'utilisateur'}) }}
+                        {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.email, null, {label: 'Email'}) }}
+                        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.plainPassword.first, null, {label: 'Mot de passe'}) }}
+                        {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.plainPassword.second, null, {label: 'Répétez votre mot de passe'}) }}
+                        {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control mt-1 mb-2'}}) }}
+                    </div>
+                    <div>
+                        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mt-2'}}) }}
+                        {{ form_label(registrationForm.agreeTerms, null, {label: 'Accepter les conditions d\'inscription'}) }}
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">
+                    S'inscrire
+                    <i class="ms-1 far fa-edit"></i>
+                </button>
+                {{ form_end(registrationForm) }}
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}
