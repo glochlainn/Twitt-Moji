@@ -72,6 +72,16 @@
                             {% endif %}
                         </h3>
                         <p class="mb-0">{{ tweet.content }}</p>
+
+                        {% if app.user == tweet.user or is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERATOR") %}
+                            <form class="mt-3" method="post" action="{{ path('tweet_delete', {'id': tweet.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce tweet ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tweet.id) }}">
+                                <button class="delete-tweet">
+                                    <i class="far fa-trash-alt"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

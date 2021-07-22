@@ -11,6 +11,19 @@ main {
     }
   }
 
+  .delete-tweet {
+    background-color: $dark;
+    color: $danger;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .follows {
     a {
       text-decoration: none;
