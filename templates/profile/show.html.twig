@@ -114,10 +114,6 @@
                                     <div>
                                         <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
                                         <div class="d-flex flex-row align-items-center">
-                                            <p class="mb-0 me-2">
-                                                <span class="fw-bold">{{ follow.followed.follows|length }}</span>
-                                                abonnements
-                                            </p>
                                             <p class="m-0">
                                                 <span class="fw-bold">{{ follow.followed.followedBy|length }}</span>
                                                 abonnés
@@ -152,10 +148,6 @@
                                     <div>
                                         <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
                                         <div class="d-flex flex-row align-items-center">
-                                            <p class="mb-0 me-2">
-                                                <span class="fw-bold">{{ follow.follower.follows|length }}</span>
-                                                abonnements
-                                            </p>
                                             <p class="m-0">
                                                 <span class="fw-bold">{{ follow.follower.followedBy|length }}</span>
                                                 abonnés

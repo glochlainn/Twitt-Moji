@@ -4,11 +4,30 @@
     {{ parent() }}- Nouveau Twitt'Moji
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+{% endblock %}
+
 {% block body %}
     <main class="py-5">
         <div class="container">
-            <h1 class="h1 text-secondary fw-bold mt-5">Nouveau Twitt'Moji</h1>
-            {{ include('tweet/_form.html.twig') }}
+            <h1 class="h1 text-primary fw-bold mt-5">Nouveau Twitt'Moji</h1>
+            {{ form_start(form)}}
+            <div class="mt-3">
+                {{form_widget(form.content, {'attr': {'class': 'form-control shadow-sm p-3 mb-3 rounded fs-2', 'id': 'newTweet'}})}}
+            </div>
+            <button class="btn btn-primary fw-bold">
+                {{ button_label|default('ENVOYER') }}<i class="ms-2 far fa-paper-plane"></i>
+            </button>
+            {{form_end(form)}}
         </div>
     </main>
+    
+    {# Ce n'est pas très propre mais c'est la seule solution que j'ai trouvé #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js" integrity="sha512-ZuxZDe3rBE+OMV5ki0VZC2MSCp6NaoTiDHvYenVag+L/Agxb+MMKHZqVNXFXYX/ruuRofd5setKzyCupZCURvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $('#tweet_content').emojioneArea({pickerPosition: 'bottom'});
+    </script>
 {% endblock %}
