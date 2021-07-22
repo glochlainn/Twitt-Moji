@@ -27,16 +27,16 @@ class UserFixtures extends Fixture
 
         $user = new User();
         $user->setEmail('admin@twittmoji.com');
-        $user->setUsername('admin');
-        $user->setPassword($this->passwordHasher->hashPassword($user, 'Admin'));
+        $user->setUsername('Admin');
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'admin'));
         $user->setAvatar('https://ih1.redbubble.net/image.376081801.6910/st,small,507x507-pad,600x600,f8f8f8.u2.jpg');
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
         $user = new User();
         $user->setEmail('modo@twittmoji.com');
-        $user->setUsername('modo');
-        $user->setPassword($this->passwordHasher->hashPassword($user, 'Modo'));
+        $user->setUsername('Modo');
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'modo'));
         $user->setAvatar('https://res.cloudinary.com/leetchi/image/upload/c_fill,f_auto,fl_lossy,g_center,h_520,q_80,w_715/v1556055046/da6ca9ed-c6a9-4214-a32c-ac1fffbb9386.jpg');
         $user->setRoles(['ROLE_MODERATOR']);
         $manager->persist($user);
