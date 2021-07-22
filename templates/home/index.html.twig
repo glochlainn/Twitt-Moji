@@ -16,7 +16,7 @@
             <h1 class="h1 text-primary fw-bold mt-5 mb-4">Derniers Twitt'Mojis</h1>
             {% for tweet in tweets %}
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
-                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="avatar-picture-{{ tweet.user.username ?? "user-picture"}}">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="avatar-picture-{{ tweet.user.username ?? " user-picture"}}">
                     <div class="d-flex flex-column">
                         <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
                             <a href="{{ path("profile", {username: tweet.user.username}) }}">
@@ -32,6 +32,16 @@
                             {% endif %}
                         </h3>
                         <p class="mb-0">{{ tweet.content }}</p>
+
+                        {% if app.user == tweet.user or is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERATOR") %}
+                            <form class="mt-3" method="post" action="{{ path('tweet_delete', {'id': tweet.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce tweet ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tweet.id) }}">
+                                <button class="delete-tweet">
+                                    <i class="far fa-trash-alt"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

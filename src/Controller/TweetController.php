@@ -52,26 +52,6 @@ class TweetController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="tweet_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Tweet $tweet): Response
-    {
-        $form = $this->createForm(TweetType::class, $tweet);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('tweet_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('tweet/edit.html.twig', [
-            'tweet' => $tweet,
-            'form' => $form,
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="tweet_delete", methods={"POST"})
      */
     public function delete(Request $request, Tweet $tweet): Response
@@ -82,6 +62,6 @@ class TweetController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('tweet_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home');
     }
 }
