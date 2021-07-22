@@ -1,17 +1,24 @@
 @import 'variables';
 
 main {
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
   .tweet-card {
     background-color: #2c2d30;
     border-radius: 10px;
 
     h2 a {
-        text-decoration: none;
-        color: $light;
+      text-decoration: none;
+      color: $light;
 
-        &:hover {
-            text-decoration: underline;
-        }
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     img {
@@ -30,14 +37,7 @@ main {
     }
 
     &:hover {
-        filter: brightness(110%);
+      filter: brightness(110%);
     }
-  }
-
-  .new-tweet {
-    position: fixed;
-    text-align: center;
-    top: 90%;
-    right: 2%;
   }
 }
