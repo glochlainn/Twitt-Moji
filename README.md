@@ -41,16 +41,16 @@ If you meet the prerequisites, you can proceed to the installation of the projec
 
 ## Users
 **User**
-login: user
-password: 12345
+login: _user_<br/>
+password: _12345_<br/>
 
 **Moderator**
-login: Modo
-password: modo
+login: _Modo_<br/>
+password: _modo_<br/>
 
 **Admin**
-login: Admin
-password: admin
+login: _Admin_<br/>
+password: _admin_<br/>
 
 ## Built-With
 
