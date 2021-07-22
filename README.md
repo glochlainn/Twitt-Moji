@@ -24,6 +24,7 @@ If you wanna try out my application, follow instructions bellow.
 * [Git 2.*](https://git-scm.com/) (check by running git --version in your console)
 
 ## Installation
+
 If you meet the prerequisites, you can proceed to the installation of the project 
 
 1. Clone the project from [Github](https://github.com/WildCodeSchool/orleans-202103-php-project-jobpermut/)
@@ -40,6 +41,7 @@ If you meet the prerequisites, you can proceed to the installation of the projec
 12. Go to localhost:8000 on your browser
 
 ## Users
+
 **User**<br/>
 login: _user_<br/>
 password: _12345_<br/>
@@ -55,3 +57,4 @@ password: _admin_<br/>
 ## Built-With
 
 * [Symfony](https://github.com/symfony/symfony)
+* [Sass](https://github.com/sass/sass)
