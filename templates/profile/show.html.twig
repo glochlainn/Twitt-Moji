@@ -17,7 +17,12 @@
                 <div class="d-flex flex-md-row flex-column align-items-md-center">
                     <img class="me-4 mb-3 mb-md-0" src="{{ user.avatar ? vich_uploader_asset(user, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="profile-pic-{{ user.username }}">
                     <div>
-                        <h1 class="h3 fw-bold">{{ user.username }}</h1>
+                        <div class="d-flex flex-row align-items-center">
+                            <h1 class="h3 fw-bold">{{ user.username }}</h1>
+                            {% if user.username == "Modo" or user.username == "Admin" %}
+                                <i class="fas fa-bolt text-danger ms-2 fs-5"></i>
+                            {% endif %}
+                        </div>
                         <div class="follows d-flex flex-row align-items-center">
                             <a a type="button" data-bs-toggle="modal" data-bs-target="#abonnements" class="h5 me-3">
                                 <span class="fw-bold">{{ user.follows|length }}</span>
@@ -65,11 +70,16 @@
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
                     <img class="me-3 align-self-start" src="{{ tweet.user.avatar ? vich_uploader_asset(tweet.user, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
                     <div class="d-flex flex-column">
-                        <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
-                            <a href="{{ path("profile", {username: tweet.user.username}) }}">
-                                {{ tweet.user.username }}
-                            </a>
-                        </h2>
+                        <div class="d-flex flex-row align-items-center">
+                            <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
+                                <a href="{{ path("profile", {username: tweet.user.username}) }}">
+                                    {{ tweet.user.username }}
+                                </a>
+                            </h2>
+                            {% if tweet.user.username == "Admin" or tweet.user.username == "Modo" %}
+                                <i class="fas fa-bolt text-danger pb-2"></i>
+                            {% endif %}
+                        </div>
                         <h3 class="mt-0 mb-3">
                             <i class="far fa-clock me-1"></i>
                             {% if date(tweet.tweetedAt) > date('-1days', 'Europe/Paris') %}
@@ -112,7 +122,12 @@
                                 <div class="user-card my-2 d-flex flex-row align-items-center">
                                     <img class="me-3" src="{{ follow.followed.avatar ? vich_uploader_asset(follow.followed, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="profile-pic-{{ follow.followed.username }}">
                                     <div>
-                                        <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
+                                            {% if follow.followed.username == "Admin" or follow.followed.username == "Modo" %}
+                                                <i class="fas fa-bolt text-danger ms-1"></i>
+                                            {% endif %}
+                                        </div>
                                         <div class="d-flex flex-row align-items-center">
                                             <p class="m-0">
                                                 <span class="fw-bold">{{ follow.followed.followedBy|length }}</span>
@@ -146,7 +161,12 @@
                                 <div class="user-card my-2 d-flex flex-row align-items-center">
                                     <img class="me-3" src="{{ follow.follower.avatar ? vich_uploader_asset(follow.follower, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="profile-pic-{{ follow.follower.username }}">
                                     <div>
-                                        <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
+                                            {% if follow.follower.username == "Admin" or follow.follower.username == "Modo" %}
+                                                <i class="fas fa-bolt text-danger ms-1"></i>
+                                            {% endif %}
+                                        </div>
                                         <div class="d-flex flex-row align-items-center">
                                             <p class="m-0">
                                                 <span class="fw-bold">{{ follow.follower.followedBy|length }}</span>

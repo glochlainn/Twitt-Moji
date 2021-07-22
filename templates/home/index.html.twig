@@ -18,11 +18,16 @@
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
                     <img class="me-3 align-self-start" src="{{ tweet.user.avatar ? vich_uploader_asset(tweet.user, 'imageFile')|src : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' }}" alt="avatar-picture-{{ tweet.user.username ?? " user-picture"}}">
                     <div class="d-flex flex-column">
-                        <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
-                            <a href="{{ path("profile", {username: tweet.user.username}) }}">
-                                {{ tweet.user.username }}
-                            </a>
-                        </h2>
+                        <div class="d-flex flex-row align-items-center">
+                            <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
+                                <a href="{{ path("profile", {username: tweet.user.username}) }}">
+                                    {{ tweet.user.username }}
+                                </a>
+                            </h2>
+                            {% if tweet.user.username == "Modo" or tweet.user.username == "Admin" %}
+                                <i class="fas fa-bolt text-danger pb-2 fs-5"></i>
+                            {% endif %}
+                        </div>
                         <h3 class="mt-0 mb-3">
                             <i class="far fa-clock me-1"></i>
                             {% if date(tweet.tweetedAt) > date('-1days', 'Europe/Paris') %}
