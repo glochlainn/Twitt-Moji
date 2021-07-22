@@ -1,6 +1,16 @@
 @import 'variables';
 
 main {
+  a {
+    text-decoration: none;
+    color: $light;
+
+    &:hover {
+      text-decoration: underline;
+      color: $light;
+    }
+  }
+
   img {
     height: 100px;
     width: 100px;
@@ -11,15 +21,6 @@ main {
   .tweet-card {
     background-color: #2c2d30;
     border-radius: 10px;
-
-    h2 a {
-      text-decoration: none;
-      color: $light;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
 
     img {
       height: 45px;
@@ -38,6 +39,42 @@ main {
 
     &:hover {
       filter: brightness(110%);
+    }
+  }
+
+  .modal {
+    .modal-header {
+      border: none;
+      padding: 16px 16px 0 16px;
+
+      .fa-times {
+        color: light;
+        font-size: 20px;
+        padding-top: 8px;
+      }
+    }
+
+    .modal-body {
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      .user-card {
+        background-color: #2c2d30;
+        border-radius: 7px;
+        padding: 10px;
+
+        &:hover {
+          filter: brightness(110%);
+        }
+      }
     }
   }
 }

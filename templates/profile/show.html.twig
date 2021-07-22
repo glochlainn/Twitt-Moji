@@ -16,18 +16,18 @@
         <div class="py-5">
             <div class="profile-header mb-md-5 mb-4 mt-5 d-flex flex-md-row flex-column align-items-md-center justify-content-between">
                 <div class="d-flex flex-md-row flex-column align-items-md-center">
-                    <img class="me-4 mb-3 mb-md-0" src="{{ user.avatar }}" alt="profile-pic-{{ user.username }}">
+                    <img class="me-4 mb-3 mb-md-0" src="{{ user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ user.username }}">
                     <div>
                         <h1 class="h3 fw-bold">{{ user.username }}</h1>
                         <div class="d-flex flex-row align-items-center">
-                            <p class="h5 me-3">
+                            <a a type="button" data-bs-toggle="modal" data-bs-target="#abonnements" class="h5 me-3">
                                 <span class="fw-bold">{{ user.follows|length }}</span>
                                 abonnements
-                            </p>
-                            <p class="h5">
+                            </a>
+                            <a a type="button" data-bs-toggle="modal" data-bs-target="#abonnés" class="h5">
                                 <span class="fw-bold">{{ user.followedBy|length }}</span>
                                 abonnés
-                            </p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             </h2>
             {% for tweet in user.tweets %}
                 <div class="tweet-card d-flex flex-row align-items-center mb-3 p-4">
-                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
+                    <img class="me-3 align-self-start" src="{{ tweet.user.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="avatar-picture-{{ tweet.user.username ?? " bzzz"}}">
                     <div class="d-flex flex-column">
                         <h2 class="h5 me-2 mt-0 mb-2 fw-bold">
                             <a href="{{ path("profile", {username: tweet.user.username}) }}">
@@ -69,7 +69,74 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
 
+        <!-- Modal abonnements -->
+        <div class="modal fade" id="abonnements" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark p-2">
+                    <div class="modal-header">
+                        <h3 class="h3 modal-title text-primary fw-bold" id="staticBackdropLabel">Abonnements</h3>
+                        <a type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        {% for follow in user.follows %}
+                            <div class="user-card my-2 d-flex flex-row align-items-center">
+                                <img class="me-3" src="{{ follow.followed.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.followed.username }}">
+                                <div>
+                                    <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.followed.username}) }}">{{ follow.followed.username }}</a>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p class="mb-0 me-2">
+                                            <span class="fw-bold">{{ follow.followed.follows|length }}</span>
+                                            abonnements
+                                        </p>
+                                        <p class="m-0">
+                                            <span class="fw-bold">{{ follow.followed.followedBy|length }}</span>
+                                            abonnés
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal abonnés -->
+        <div class="modal fade" id="abonnés" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark p-2">
+                    <div class="modal-header">
+                        <h3 class="h3 modal-title text-primary fw-bold" id="staticBackdropLabel">Abonnés</h3>
+                        <a type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        {% for follow in user.followedBy %}
+                            <div class="user-card my-2 d-flex flex-row align-items-center">
+                                <img class="me-3" src="{{ follow.follower.avatar ?? "https://stonegatesl.com/wp-content/uploads/2021/01/avatar-300x300.jpg" }}" alt="profile-pic-{{ follow.follower.username }}">
+                                <div>
+                                    <a class="text-white fw-bold mb-1" href="{{ path("profile", {username: follow.follower.username}) }}">{{ follow.follower.username }}</a>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <p class="mb-0 me-2">
+                                            <span class="fw-bold">{{ follow.follower.follows|length }}</span>
+                                            abonnements
+                                        </p>
+                                        <p class="m-0">
+                                            <span class="fw-bold">{{ follow.follower.followedBy|length }}</span>
+                                            abonnés
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 {% endblock %}
