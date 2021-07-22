@@ -20,16 +20,43 @@ class TweetFixtures extends Fixture implements DependentFixtureInterface
             'content' => '😀♾️🧨🎍🥽'
         ],
         [
-            'content' => '🥼🚩'
+            'content' => '🥼🚩 🗓 😦 ⛸'
         ],
         [
             'content' => '🗣️👨‍🦰🐐🤡'
         ],
         [
-            'content' => '😎♿🐑'
+            'content' => '😎♿🐑🌿🔸'
         ],
         [
             'content' => '🥶🤦‍♂️🥥🥟🏖️🦧'
+        ],
+        [
+            'content' => '🆑🔛🐦⬇️💄🏧✍'
+        ],
+        [
+            'content' => '🔎☔️🌿🔸👥🐲🔉'
+        ],
+        [
+            'content' => '🐓🍬🗽🐰☢♑️🛄'
+        ],
+        [
+            'content' => '📭🍽🍘🏥😈🛁❇️🛁🍌'
+        ],
+        [
+            'content' => '🐈🌍🚘🍃'
+        ],
+        [
+            'content' => '⚜❣👘🌿🍢🔇📥'
+        ],
+        [
+            'content' => '👜🍮🚤♌️🚛🔯🏷'
+        ],
+        [
+            'content' => '🏟🌦🆓🕦🆙🤑😹👮⚓️🉑'
+        ],
+        [
+            'content' => '👵🛢🌲🏈🆑😬⚡️💠'
         ],
     ];
 
@@ -44,7 +71,7 @@ class TweetFixtures extends Fixture implements DependentFixtureInterface
             $tweets = self::TWEETS[array_rand(self::TWEETS)];
             $tweet = new Tweet();
             $tweet->setContent($tweets['content']);
-            $tweet->setTweetedAt(DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-3 days', 'now')));
+            $tweet->setTweetedAt(DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-7 days', 'now')));
             $tweet->setUser($this->getReference('user_' . $i));
             $manager->persist($tweet);
         }

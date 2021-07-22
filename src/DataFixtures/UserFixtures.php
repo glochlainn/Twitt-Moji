@@ -13,7 +13,7 @@ class UserFixtures extends Fixture
     private UserGeneratorApi $userGenerator;
     private UserPasswordHasherInterface $passwordHasher;
 
-    public const USERS_NUMBER = 20;
+    public const USERS_NUMBER = 100;
 
     public function __construct(UserGeneratorApi $userGenerator, UserPasswordHasherInterface $passwordHasher)
     {
