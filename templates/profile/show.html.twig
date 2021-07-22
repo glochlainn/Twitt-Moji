@@ -7,7 +7,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
     {{ encore_entry_link_tags('profile') }}
 {% endblock %}
 
@@ -38,10 +37,17 @@
                             <i class="fas fa-pen ms-1"></i>
                         </a>
                     {% else %}
-                        <a class="btn btn-primary fw-bold" href="#">
-                            S'abonner
-                            <i class="fas fa-angle-right ms-1"></i>
-                        </a>
+                        {% if app.user.getOneFollow(user) %}
+                            <a class="btn btn-outline-danger followButton fw-bold" href="{{ path('follow', {user: user.id}) }}">
+                                Se désabonner
+                                <i class="fas fa-angle-right ms-1"></i>
+                            </a>
+                        {% else %}
+                            <a class="btn btn-primary followButton fw-bold" href="{{ path('follow', {user: user.id}) }}">
+                                S'abonner
+                                <i class="fas fa-angle-right ms-1"></i>
+                            </a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

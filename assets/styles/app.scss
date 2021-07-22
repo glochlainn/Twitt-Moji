@@ -13,6 +13,19 @@ body {
   text-transform: uppercase;
 }
 
+.btn-outline-danger {
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
+
+  &:hover {
+      background-color: $dark;
+      color: $danger;
+      border-color: $danger;
+      filter: brightness(130%);
+  }
+}
+
 .btn-outline-primary {
   font-weight: bold;
   border-radius: 20px;

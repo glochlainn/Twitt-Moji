@@ -215,6 +215,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->follows;
     }
 
+    public function getOneFollow(User $user): bool
+    {
+        foreach ($this->getFollows() as $follow) {
+            if ($follow->getFollowed() === $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function addFollow(Follow $follow): self
     {
         if (!$this->follows->contains($follow)) {
